@@ -10,10 +10,13 @@ export default function Footer() {
           
           {/* Brand & Description */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold flex items-center gap-2 text-[var(--color-primary)]">
-              <i className="fas fa-gift"></i> 
-              <span data-store-name>هديتي</span>
-            </h3>
+            <Link href="/" className="inline-block">
+              <img 
+                src="/assets/images/logo.png" 
+                alt="هديتي" 
+                className="h-12 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </Link>
             <p className="text-gray-300 leading-relaxed max-w-sm" data-store-description>
               نصنع الذكريات الجميلة من خلال هدايا مميزة تلامس القلوب. جودة عالية وخدمة راقية تليق بكم.
             </p>
@@ -95,7 +98,11 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {currentYear} <span className="text-white font-bold" data-store-name>هديتي</span>. جميع الحقوق محفوظة.</p>
+          <div className="flex items-center justify-center gap-2">
+            <span>&copy; {currentYear}</span>
+            <img src="/assets/images/logo.png" alt="هديتي" className="h-6 w-auto object-contain brightness-0 invert" />
+            <span>. جميع الحقوق محفوظة.</span>
+          </div>
         </div>
       </div>
     </footer>

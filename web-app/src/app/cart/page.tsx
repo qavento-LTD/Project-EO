@@ -93,9 +93,12 @@ export default function CartPage() {
                 </div>
 
                 <div className="space-y-3">
-                    <button className="px-6 py-3 bg-[var(--color-primary)] text-white rounded-full transition-all duration-300 hover:bg-[#b5952f] hover:-translate-y-1 shadow-md inline-flex items-center gap-2 cursor-pointer w-full justify-center py-3 text-lg">
+                    <Link 
+                        href="/checkout"
+                        className="px-6 py-3 bg-[var(--color-primary)] text-white rounded-full transition-all duration-300 hover:bg-[#b5952f] hover:-translate-y-1 shadow-md inline-flex items-center gap-2 cursor-pointer w-full justify-center py-3 text-lg"
+                    >
                         إتمام الطلب
-                    </button>
+                    </Link>
                     <p className="text-xs text-center text-gray-400">
                         <i className="fas fa-lock ml-1"></i> معلومات الدفع مشفرة وآمنة
                     </p>

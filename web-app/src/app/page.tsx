@@ -1,21 +1,33 @@
 import Link from "next/link";
-import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 import NewsletterForm from "@/components/NewsletterForm";
 
-export default function Home() {
-  const categories = [
-    { title: "أطقم لانجري", icon: "fa-heart", slug: "lingerie-sets" },
-    { title: "ملابس نوم", icon: "fa-moon", slug: "sleepwear" },
-    { title: "عرائس", icon: "fa-ring", slug: "bridal" },
-    { title: "أرواب", icon: "fa-user-secret", slug: "robes" },
-  ];
+export default async function Home() {
+  // Fetch Categories from Supabase
+  const { data: categoriesData } = await supabase
+    .from('categories')
+    .select('*')
+    .limit(4);
 
-  const featuredProducts = [
-    { id: 1, title: "طقم دانتيل فاخر", price: 299, image: "/assets/images/logo.png" },
-    { id: 2, title: "روب حرير طويل", price: 450, image: "/assets/images/logo.png" },
-    { id: 3, title: "بيجامة ساتان", price: 320, image: "/assets/images/logo.png" },
-    { id: 4, title: "بيبي دول شفاف", price: 180, image: "/assets/images/logo.png" },
-  ];
+  const categories = categoriesData?.map(cat => ({
+    title: cat.name,
+    icon: cat.icon || "fa-star",
+    slug: cat.slug
+  })) || [];
+
+  // Fetch Featured Products from Supabase
+  const { data: productsData } = await supabase
+    .from('products')
+    .select('*')
+    .eq('is_featured', true)
+    .limit(4);
+
+  const featuredProducts = productsData?.map(prod => ({
+    id: prod.id,
+    title: prod.title,
+    price: prod.price,
+    image: prod.image_url || "/assets/images/logo.png"
+  })) || [];
 
   return (
     <div className="flex flex-col gap-16 pb-16">
@@ -100,7 +112,7 @@ export default function Home() {
                     <i className="fas fa-female text-4xl"></i>
                 </div>
                 {/* Real Image would go here */}
-                {/* <Image src={product.image} alt={product.title} layout="fill" objectFit="cover" /> */}
+                {/* <img src={product.image} alt={product.title} className="w-full h-full object-cover" /> */}
                 <span className="absolute top-3 right-3 bg-[var(--color-accent)] text-white text-xs font-bold px-3 py-1 rounded-full">
                   جديد
                 </span>
@@ -118,9 +130,9 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <a href="/products" className="px-6 py-3 bg-[var(--color-primary)] text-white rounded-full transition-all duration-300 hover:bg-[#b5952f] hover:-translate-y-1 shadow-md inline-flex items-center gap-2 cursor-pointer btn-outline border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white">
+          <Link href="/products" className="px-6 py-3 bg-[var(--color-primary)] text-white rounded-full transition-all duration-300 hover:bg-[#b5952f] hover:-translate-y-1 shadow-md inline-flex items-center gap-2 cursor-pointer btn-outline border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white">
             عرض كل المجموعة
-          </a>
+          </Link>
         </div>
       </section>
 

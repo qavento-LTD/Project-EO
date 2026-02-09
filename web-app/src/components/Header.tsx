@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import AuthButton from "@/components/auth/AuthButton";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -84,10 +85,9 @@ export default function Header() {
               )}
             </button>
 
-            {/* Auth Wrapper (Placeholder for now) */}
+            {/* Auth Wrapper */}
             <div id="auth-section" className="hidden md:block">
-              {/* Will be populated by Auth logic */}
-              {/* <Link href="/auth/login" className="text-sm font-medium hover:text-primary">تسجيل الدخول</Link> */}
+              <AuthButton />
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -162,7 +162,7 @@ export default function Header() {
                     <span>{cartTotal} ر.س</span>
                 </div>
                 <Link 
-                    href="/cart" 
+                    href="/checkout" 
                     className="px-6 py-3 bg-[var(--color-primary)] text-white rounded-full transition-all duration-300 hover:bg-[#b5952f] hover:-translate-y-1 shadow-md inline-flex items-center gap-2 cursor-pointer w-full justify-center"
                     onClick={() => setIsCartOpen(false)}
                 >

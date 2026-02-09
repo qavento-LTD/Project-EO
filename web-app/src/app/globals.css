@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #d4af37;
-  --color-secondary: #2c3e50;
-  --color-text-dark: #333333;
-  --color-text-light: #666666;
-  --color-accent: #e74c3c;
+  --color-primary: #D81B60; /* Hot Pink from Logo */
+  --color-secondary: #212121; /* Dark Grey/Black */
+  --color-text-dark: #212121;
+  --color-text-light: #757575;
+  --color-accent: #FF4081; /* Lighter Pink accent */
   
   --font-tajawal: 'Tajawal', sans-serif;
 }
